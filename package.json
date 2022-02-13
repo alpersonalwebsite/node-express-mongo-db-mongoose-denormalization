@@ -1,0 +1,62 @@
+{
+  "name": "node-express-mongo-db-mongoose-denormalization",
+  "version": "1.0.0",
+  "description": "Simple example of how to implement Embedded Documents Relationships (Denormalization) with Mongoose",
+  "keywords": [
+    "node mongodb mongoose",
+    "mongodb mongoose",
+    "mongoose embedded documents",
+    "mongoose embedded documents relationships",
+    "mongoose denormalization",
+    "embedded documents relationships"
+  ],
+  "author": "Al Diaz",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "start": "NODE_ENV=production ENVIRONMENT=prod node dist/index.js",
+    "dev": "ENVIRONMENT=dev nodemon --exec babel-node -- src/index.js",
+    "dev-build": "rimraf dist && npm run build",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.2",
+    "joi": "^17.6.0",
+    "joi-objectid": "^4.0.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.13.14",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.8",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.15.6",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "babel-preset-minify": "^0.5.1",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.4.2",
+    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2"
+  }
+}
