@@ -1,13 +1,10 @@
 import { toNumber } from '../../utils/helpers'
-import { Song, validateSong } from './model'
-
 import { Artist } from '../artists/model'
+import { Song, validateSong } from './model'
 
 export const getSongs = async (req, res) => {
   try {
-    const docs = await Song.find()
-      .limit(toNumber(req.query.limit, 40))
-      .skip(toNumber(req.query.offset, 0))
+    const docs = await Song.find().limit(toNumber(req.query.limit, 40)).skip(toNumber(req.query.offset, 0))
 
     res.status(200).json({ data: docs })
   } catch (err) {
