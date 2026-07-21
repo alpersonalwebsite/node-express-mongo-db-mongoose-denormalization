@@ -1,5 +1,6 @@
 import cors from 'cors'
 import express from 'express'
+import helmet from 'helmet'
 import morgan from 'morgan'
 
 import artistRouter from './resources/artists/router'
@@ -9,6 +10,8 @@ import { connect } from './utils/db'
 const PORT = process.env.PORT || 3333
 
 const app = express()
+
+app.use(helmet())
 
 app.use(
   express.urlencoded({
