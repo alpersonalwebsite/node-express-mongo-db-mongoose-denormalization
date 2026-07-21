@@ -20,24 +20,22 @@ export const addSong = async (req, res) => {
   const { error } = validateSong(req.body)
   if (error) return res.status(400).send(error.details[0].message)
 
-  const artist = await Artist.findById(req.body.artist)
-  if (!artist) return res.status(400).send('Invalid artist!')
-
-  const song = new Song({
-    name: req.body.name,
-    artist: {
-      _id: artist.id,
-      name: artist.name
-    }
-  })
-
   try {
-    await song.save()
-  } catch (err) {
-    for (let e in err.errors) {
-      console.log(err.errors[e].message)
-    }
-  }
+    const artist = await Artist.findById(req.body.artist)
+    if (!artist) return res.status(400).send('Invalid artist!')
 
-  res.send(song)
+    const song = new Song({
+      name: req.body.name,
+      artist: {
+        _id: artist.id,
+        name: artist.name
+      }
+    })
+
+    await song.save()
+    res.status(201).json(song)
+  } catch (err) {
+    console.error(err)
+    res.status(500).end()
+  }
 }

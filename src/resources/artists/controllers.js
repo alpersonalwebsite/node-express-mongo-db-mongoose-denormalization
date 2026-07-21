@@ -26,11 +26,9 @@ export const addArtist = async (req, res) => {
 
   try {
     await artist.save()
+    res.status(201).json(artist)
   } catch (err) {
-    for (let e in err.errors) {
-      console.log(err.errors[e].message)
-    }
+    console.error(err)
+    res.status(500).end()
   }
-
-  res.send(artist)
 }
