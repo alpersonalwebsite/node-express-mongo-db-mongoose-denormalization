@@ -9,8 +9,8 @@ const authorizationString =
 const URL = `${process.env.DB_PREFIX}://${authorizationString}${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 export const connect = (url = URL, opts = {}) => {
-  mongoose.connect(url, { ...opts, useNewUrlParser: true, useUnifiedTopology: true })
-  let db = mongoose.connection
+  const db = mongoose.connection
   db.once('open', () => console.log('Connected to the database'))
   db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+  return mongoose.connect(url, { ...opts, useNewUrlParser: true, useUnifiedTopology: true })
 }

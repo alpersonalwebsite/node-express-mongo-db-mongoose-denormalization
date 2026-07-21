@@ -7,7 +7,7 @@ import artistRouter from './resources/artists/router'
 import songRouter from './resources/songs/router'
 import { connect } from './utils/db'
 
-const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT || 3000
 
 const app = express()
 
@@ -35,12 +35,12 @@ app.get('*', (req, res) => {
 })
 
 export const start = async () => {
-  try {
-    await connect()
-    app.listen(PORT, () => {
-      console.log(`REST API on http://localhost:${PORT}`)
-    })
-  } catch (e) {
-    console.error(e)
-  }
+  // Kick off the DB connection but don't block booting on it, so the catch-all
+  // route stays usable even if MongoDB is unreachable. Connection errors are
+  // reported by the 'error' handler set up in connect().
+  connect().catch(() => {})
+
+  app.listen(PORT, () => {
+    console.log(`REST API on http://localhost:${PORT}`)
+  })
 }
