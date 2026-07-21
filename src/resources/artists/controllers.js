@@ -3,15 +3,12 @@ import { Artist, validateArtist } from './model'
 
 export const getArtists = async (req, res) => {
   try {
-    const docs = await Artist.find()
-      .limit(toNumber(req.query.limit || 40))
-      .skip(toNumber(req.query.offset))
-      .exec()
+    const docs = await Artist.find().limit(toNumber(req.query.limit, 40)).skip(toNumber(req.query.offset, 0)).exec()
 
     res.status(200).json({ data: docs })
   } catch (err) {
     console.error(err)
-    res.status(400).end()
+    res.status(500).end()
   }
 }
 
@@ -26,11 +23,9 @@ export const addArtist = async (req, res) => {
 
   try {
     await artist.save()
+    res.status(201).json(artist)
   } catch (err) {
-    for (let e in err.errors) {
-      console.log(err.errors[e].message)
-    }
+    console.error(err)
+    res.status(500).end()
   }
-
-  res.send(artist)
 }

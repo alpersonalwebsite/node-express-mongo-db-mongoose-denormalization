@@ -7,7 +7,7 @@
 
 This is an easy, basic and raw example of **HOW to** implement Embedded Documents Relationships (Denormalization) with Mongoose.
 
-For a dryer approach, check [Generic Controllers](../node-express-mongo-db-controllers/src/utils/crud.js).
+For a dryer approach, check [Generic Controllers](https://github.com/alpersonalwebsite/node-express-mongo-db-controllers/blob/master/src/utils/crud.js).
 
 ## Requirements
 
@@ -35,6 +35,19 @@ Then, install the dependencies as usual:
 ```
 npm install
 ```
+
+## Environment variables
+
+Create your env file from the sample. The app loads
+`src/config/<ENVIRONMENT>.env`, so create `dev.env` for `npm run dev` and
+`prod.env` for `npm start`:
+
+```shell
+cp src/config/.env.example src/config/dev.env
+```
+
+Fill in the MongoDB connection (`DB_PREFIX`, `DB_HOST`, `DB_NAME`, and, outside
+dev, `DB_USER` / `DB_PASSWORD`).
 
 ## Running the server
 
